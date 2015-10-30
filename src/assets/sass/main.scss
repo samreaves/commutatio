@@ -4,10 +4,38 @@ Written by Moises Lomas & Sam Reaves
 October 30th, 2015
 */
 
+// --------------------------
+//  Imports
+// --------------------------
 
+	// Libs
+	@import 'libs/bourbon/bourbon';
+	@import 'libs/typicons/typicons';
+
+	// Modules
+	@import 'modules/post';
+
+	// Partials
+	@import 'partials/reset';
+
+
+// --------------------------
+//  Global Elements
+// --------------------------
 /* Basic browser resets. There are a TON more but this is good for now. */
 body {
+	font-family: 'Titillium Web', Verdana, Arial, sans-serif;
 	padding: 0;
 	margin: 0;
 	border: 0;
 }
+
+
+// --------------------------
+//  IDs
+// --------------------------
+
+
+// --------------------------
+//  Classes
+// --------------------------
