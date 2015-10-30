@@ -3,7 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('commutatio.posts', ['ngRoute'])
 
-// Configure root to use the encryption partial and EncryptionCtrl controller
+// Configure root to use the posts partial and PostsCtrl controller
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'views/posts/posts.html',
