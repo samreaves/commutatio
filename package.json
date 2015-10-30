@@ -1,0 +1,41 @@
+{
+  "name": "commutatio",
+  "version": "1.0.0",
+  "description": "A web app using Angular",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000",
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/SamReaves/commutatio.git"
+  },
+  "keywords": [
+    "Angular"
+  ],
+  "author": "Moises Lomas & Sam Reaves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamReaves/commutatio/issues"
+  },
+  "homepage": "https://github.com/SamReaves/commutatio",
+  "dependencies": {
+    "angular": "1.4.5",
+    "angular-route": "^1.4.4",
+    "http-server": "^0.8.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.4.5",
+    "jasmine": "2.3.2",
+    "jasmine-core": "2.3.4",
+    "karma": "0.13.9",
+    "karma-chrome-launcher": "0.2.0",
+    "karma-coffee-preprocessor": "0.3.0",
+    "karma-firefox-launcher": "0.1.6",
+    "karma-jasmine": "0.3.6",
+    "karma-junit-reporter": "0.3.4",
+    "karma-script-launcher": "0.1.0"
+  }
+}

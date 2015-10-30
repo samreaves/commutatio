@@ -1,0 +1,42 @@
+<!--  
+
+Index File for commutatio
+Written by Moises Lomas & Sam Reaves
+October 30th, 2015
+
+-->
+
+<!DOCTYPE html>
+<html ng-app="commutatio">
+
+  <head>
+    <meta charset="utf-8"/>
+
+    <!-- Set viewport width to device width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>commutatio</title>
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- App level CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Import jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/></script>
+  </head>
+  <body>
+    <!-- Angular view directive that renders each route -->
+    <div data-ng-view class="container"></div>
+
+    <!-- Import app dependencies -->
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="../../node_modules/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="views/posts/posts.js"></script>
+  </body>
+
+</html>
