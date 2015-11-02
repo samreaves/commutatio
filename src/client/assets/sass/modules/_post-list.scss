@@ -1,0 +1,74 @@
+// --------------------------
+//  Module-Level Variables
+// --------------------------
+$post-wrap-width: 75px;
+
+.post {
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #e4e4e4;
+	height: 75px;
+	padding: 0.25rem;
+	width: 100%;
+
+	.post-author {
+		color: #6f6f6f;
+	}
+
+	.post-content {
+		float: left;
+		width: calc(100% - $post-wrap-width); //subtract size of .post-vote-wrap
+	}
+
+	.post-description { }
+
+	.post-title {
+		color: #333;
+		font-weight: bold;
+		font-size: 1.25rem;
+	}
+
+	//Wrap upvote arrow and post description
+	.post-vote-wrap {
+		height: 100%;
+		float: left;
+		width: $post-wrap-width;
+	}
+	
+	//Vote module left of the post description
+	.post-vote {
+		font-weight: bold;
+		height: 100%;
+		position: relative;
+		text-align: center;
+		
+		//Upvote Arrow
+		.post-arrow {
+			color: #ddd;
+			font-size: 2rem;
+			position: absolute;
+			top: 0;
+			width: 100%;
+
+			&.clicked { color: #eb574a; }
+
+			&:hover {
+				cursor: pointer;
+				color: #333;
+			}
+
+			&:active {
+				cursor: pointer;
+				color: #eb574a;
+			}
+		}
+		
+		//Total upvote count
+		.post-vote-count {
+			bottom: 1rem;
+			color: #333;
+			font-size: 1rem;
+			position: absolute;
+			width: 100%;
+		}
+	}
+}
