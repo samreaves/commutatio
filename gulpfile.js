@@ -14,10 +14,10 @@
 
 var gulp = require('gulp');
 var gls = require('gulp-live-server');
-var runSequence = require('run-sequence');
+var run_sequence = require('run-sequence');
 var sass = require('gulp-sass');
+var sass_sourcemaps = require('gulp-sourcemaps')
 var clean = require('gulp-clean');
-var gulpIgnore = require('gulp-ignore');
 var server = gls.new('dist/server/app.js');
 
 /**
@@ -47,7 +47,7 @@ gulp.task('copy', function() {
     /*
     * Client-side static files
     */
-    gulp.src(['src/client/**', '!src/client/assets/{sass,sass/**}'])
+    gulp.src(['src/client/**', '!src/client/assets/{sass,sass/**,css/**}'])
         .pipe(gulp.dest('dist/client'));
 
     /*
@@ -63,7 +63,9 @@ gulp.task('copy', function() {
 */
 gulp.task('scss', function() {
     gulp.src('src/client/assets/sass/main.scss')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass_sourcemaps.init())
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(sass_sourcemaps.write())
         .pipe(gulp.dest('dist/client/assets/css'));
 });
 
@@ -80,7 +82,7 @@ gulp.task('compile', ['scss']);
  * @desc The build task - clears out the dist folder, compiles everything & bundles it
  */
 gulp.task('build', function() {
-    runSequence('clean', ['copy', 'compile']);
+    run_sequence('clean', ['copy', 'compile']);
 });
 
 /**
