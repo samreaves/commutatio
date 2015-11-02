@@ -4,6 +4,7 @@ Written by Moises Lomas & Sam Reaves
 October 30th, 2015
 */
 
+
 // --------------------------
 //  Imports
 // --------------------------
@@ -14,6 +15,7 @@ October 30th, 2015
 
 	// Modules
 	@import 'modules/post';
+	@import 'modules/post-list';
 
 	// Partials
 	@import 'partials/reset';
@@ -22,7 +24,6 @@ October 30th, 2015
 // --------------------------
 //  Global Elements
 // --------------------------
-/* Basic browser resets. There are a TON more but this is good for now. */
 body {
 	font-family: 'Titillium Web', Verdana, Arial, sans-serif;
 	padding: 0;
