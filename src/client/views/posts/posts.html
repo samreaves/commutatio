@@ -10,13 +10,12 @@
 
 			<div class="post-content">
 				<span class="post-title">{{post.title}}</span>
+				<span class="post-category"> to {{post.category}}</span>
 				<span class="post-author">by {{post.author}}</span>
-				<span class="post-datetime"> {{post.datetime}}</span>
-
+				<span class="post-datetime">on {{post.datetime}}</span>
+				
 				<div class="post-description">{{post.content}}</div>
-
-				<div class="post-category">{{post.category}}</div>
-				<span ng-repeat="tag in post.tags">{{tag}}</span>
+				<span class="post-tag" ng-repeat="tag in post.tags">{{tag}}</span>
 			</div><!-- /post-content -->
 		</div>
 	</div>
