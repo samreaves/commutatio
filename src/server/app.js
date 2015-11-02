@@ -17,6 +17,10 @@ var express = require('express'),
 	port,
 	static_directory = path.join(__dirname, '../client/');
 
+
+// Enable live-reload. Perhaps this should not be on the production code?
+app.use(require('connect-livereload')());
+
 // Use body parser to parse both application/json and application/x-www-form-urlencoded
 app.use(body_parser.urlencoded({extended: false}));
 app.use(body_parser.json());
