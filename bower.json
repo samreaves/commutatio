@@ -1,0 +1,17 @@
+{
+  "name": "commutatio",
+  "version": "0.0.0",
+  "homepage": "https://github.com/samreaves/commutatio",
+  "authors": [
+    "Sam <thesamreaves@gmail.com>",
+    "Moises <mlomasproductions@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

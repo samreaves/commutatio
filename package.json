@@ -4,8 +4,9 @@
   "description": "A web app using Angular",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/server/app.js",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000",
+    "start": "node src/server/app.js",
     "test": "karma start karma.conf.js"
   },
   "repository": {
@@ -13,7 +14,8 @@
     "url": "ssh://git@github.com/SamReaves/commutatio.git"
   },
   "keywords": [
-    "Angular"
+    "Angular",
+    "Express"
   ],
   "author": "Moises Lomas & Sam Reaves",
   "license": "ISC",
@@ -22,12 +24,15 @@
   },
   "homepage": "https://github.com/SamReaves/commutatio",
   "dependencies": {
-    "angular": "1.4.5",
-    "angular-route": "^1.4.4",
-    "http-server": "^0.8.0"
+    "assert": "1.3.0",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "lodash": "3.10.1",
+    "morgan": "^1.6.1",
+    "mysql": "^2.9.0",
+    "q": "^1.4.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.4.5",
     "jasmine": "2.3.2",
     "jasmine-core": "2.3.4",
     "karma": "0.13.9",
@@ -36,6 +41,7 @@
     "karma-firefox-launcher": "0.1.6",
     "karma-jasmine": "0.3.6",
     "karma-junit-reporter": "0.3.4",
-    "karma-script-launcher": "0.1.0"
+    "karma-script-launcher": "0.1.0",
+    "nodemon": "^1.4.1"
   }
 }
