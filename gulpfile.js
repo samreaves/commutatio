@@ -17,7 +17,7 @@ var gls = require('gulp-live-server');
 var run_sequence = require('run-sequence');
 var sass = require('gulp-sass');
 var sass_sourcemaps = require('gulp-sourcemaps')
-var clean = require('gulp-clean');
+var rimraf = require('gulp-rimraf');
 var server = gls.new('dist/server/app.js');
 
 /**
@@ -34,7 +34,7 @@ gulp.task('clean', function() {
 
     // Clean dist folder
     return gulp.src(['dist', 'dist/*'], {read: false})
-        .pipe(clean());
+        .pipe(rimraf());
 });
 
 /**
@@ -82,6 +82,7 @@ gulp.task('compile', ['scss']);
  * @desc The build task - clears out the dist folder, compiles everything & bundles it
  */
 gulp.task('build', function() {
+    
     run_sequence('clean','copy', 'compile');
 });
 
@@ -149,7 +150,9 @@ gulp.task('serve', function() {
  * @name dev
  * @desc The develop task - serve the app and watch for file updates
  */
-gulp.task('dev', ['build', 'serve', 'watch']);
+gulp.task('dev', function() {
+    run_sequence('build', 'serve', 'watch')
+});
 
 
 
