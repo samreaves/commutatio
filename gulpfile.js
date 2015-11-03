@@ -137,7 +137,6 @@ gulp.task('watch', ['htmlwatch', 'clientjswatch', 'scsswatch', 'serverwatch']);
 /**
  * @name serve
  * @desc The app serve task - starts the server for the app
- * Also live reloads the page in the browser after source files are compiled.
  */
 gulp.task('serve', function() {
 
