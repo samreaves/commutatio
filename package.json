@@ -4,9 +4,9 @@
   "description": "A web app using Angular",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server/app.js",
+    "dev": "gulp dev",
     "prestart": "npm install",
-    "start": "node src/server/app.js",
+    "start": "gulp serve",
     "test": "karma start karma.conf.js"
   },
   "repository": {
