@@ -82,16 +82,27 @@ gulp.task('compile', ['scss']);
  * @desc The build task - clears out the dist folder, compiles everything & bundles it
  */
 gulp.task('build', function() {
-    run_sequence('clean', ['copy', 'compile']);
+    run_sequence('clean','copy', 'compile');
 });
 
-/**
- * @name staticwatch
- * @desc Watches static files and copies them to build directory when saved changes are detected.
- */
-gulp.task('staticwatch', function() {
 
-    gulp.watch('src/client/**/*', ['copy']);
+/**
+ * @name htmlwatch
+ * @desc Watches client html files and copies them to build directory when saved changes are detected.
+ */
+gulp.task('htmlwatch', function() {
+
+    gulp.watch('src/client/**/*.html', ['copy']);
+});
+
+
+/**
+ * @name clientjswatch
+ * @desc Watches client js files and copies them to build directory when saved changes are detected.
+ */
+gulp.task('clientjswatch', function() {
+
+    gulp.watch('src/client/**/*.js', ['copy']);
 });
 
 
@@ -119,15 +130,9 @@ gulp.task('serverwatch', function() {
  * @name watch
  * @desc The watch task - watches for changes to source files and triggers appropriate compile tasks.
  */
-gulp.task('watch', ['staticwatch', 'scsswatch', 'serverwatch']);
+gulp.task('watch', ['htmlwatch', 'clientjswatch', 'scsswatch', 'serverwatch']);
 
-/**
- * @name livereload
- * @desc Reloads the page in browser when a saved change is detected.
- */
-gulp.task('livereload', function() {
-    server.notify.apply(server, arguments);
-});
+
 
 /**
  * @name serve
@@ -139,16 +144,16 @@ gulp.task('serve', function() {
     // Start our own server
     server.start();
 
-    // Enable live reloading by watching for trigger filetypes (html, css, js, etc) and notifying the server
-    gulp.watch(['dist/client/**/*.html', 'dist/client/**/*.css', 'dist/client/**/*.js', 'dist/server/**/*.js'], ['livereload']);
-
 });
 
 /**
- * @name develop
+ * @name dev
  * @desc The develop task - serve the app and watch for file updates
  */
-gulp.task('develop', ['serve', 'watch']);
+gulp.task('dev', ['serve', 'watch']);
+
+
+
 
 /**
  * @name eslint
@@ -172,7 +177,7 @@ gulp.task('develop', ['serve', 'watch']);
 
 /**
  * @name scsslint
- * @desc The lint task - runs both eslint and scsslint tasks
+ * @desc Lint scss
  */
 // gulp.task('scsslint', function() {
 //     gulp.src('src/**/*.scss')
@@ -187,7 +192,7 @@ gulp.task('develop', ['serve', 'watch']);
 
 /**
  * @name test
- * @desc The test task - Runs all jest tests
+ * @desc The test task - Runs all tests
  */
 //gulp.task('test', function() {
 //
