@@ -149,7 +149,7 @@ gulp.task('serve', function() {
  * @name dev
  * @desc The develop task - serve the app and watch for file updates
  */
-gulp.task('dev', ['serve', 'watch']);
+gulp.task('dev', ['build', 'serve', 'watch']);
 
 
 
