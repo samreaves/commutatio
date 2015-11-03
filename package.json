@@ -4,9 +4,9 @@
   "description": "A web app using Angular",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server/app.js",
+    "dev": "gulp dev",
     "prestart": "npm install",
-    "start": "node src/server/app.js",
+    "start": "gulp serve",
     "test": "karma start karma.conf.js"
   },
   "repository": {
@@ -33,6 +33,13 @@
     "q": "^1.4.1"
   },
   "devDependencies": {
+    "connect-livereload": "0.5.3",
+    "gulp": "3.9.0",
+    "gulp-clean": "0.3.1",
+    "gulp-ignore": "2.0.1",
+    "gulp-live-server": "0.0.29",
+    "gulp-sass": "2.1.0",
+    "gulp-sourcemaps": "1.6.0",
     "jasmine": "2.3.2",
     "jasmine-core": "2.3.4",
     "karma": "0.13.9",
@@ -42,6 +49,7 @@
     "karma-jasmine": "0.3.6",
     "karma-junit-reporter": "0.3.4",
     "karma-script-launcher": "0.1.0",
-    "nodemon": "^1.4.1"
+    "nodemon": "^1.4.1",
+    "run-sequence": "1.1.4"
   }
 }

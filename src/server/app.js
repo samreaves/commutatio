@@ -16,6 +16,7 @@ var express = require('express'),
 	host,
 	port,
 	static_directory = path.join(__dirname, '../client/');
+ 
 
 // Use body parser to parse both application/json and application/x-www-form-urlencoded
 app.use(body_parser.urlencoded({extended: false}));
