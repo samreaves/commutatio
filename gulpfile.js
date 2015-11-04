@@ -18,13 +18,15 @@ var run_sequence = require('run-sequence');
 var sass = require('gulp-sass');
 var sass_sourcemaps = require('gulp-sourcemaps')
 var rimraf = require('gulp-rimraf');
-var server = gls.new('dist/server/app.js');
+var server;
+
 
 /**
  * @name default
- * @desc The default task - build the project and serve it up
+ * @desc The default task - build the project and serve it up in development
  */
-gulp.task('default', ['build', 'serve']);
+gulp.task('default', ['dev']);
+
 
 /**
  * @name clean
@@ -36,6 +38,7 @@ gulp.task('clean', function() {
     return gulp.src(['dist', 'dist/*'], {read: false})
         .pipe(rimraf());
 });
+
 
 /**
  * @name copy
@@ -56,6 +59,7 @@ gulp.task('copy', function() {
     gulp.src('src/server/**/*')
         .pipe(gulp.dest('dist/server'));
 });
+
 
 /**
 * @name scss
@@ -81,9 +85,9 @@ gulp.task('compile', ['scss']);
  * @name build
  * @desc The build task - clears out the dist folder, compiles everything & bundles it
  */
-gulp.task('build', function() {
+gulp.task('build', ['clean'], function() {
     
-    run_sequence('clean','copy', 'compile');
+    run_sequence('copy', 'compile');
 });
 
 
@@ -93,7 +97,14 @@ gulp.task('build', function() {
  */
 gulp.task('htmlwatch', function() {
 
-    gulp.watch('src/client/**/*.html', ['copy']);
+    gulp.watch('src/client/**/*.html', function(file){
+
+        //
+        run_sequence('copy');
+
+        // 
+        server.notify.apply(server, [file]);
+    });
 });
 
 
@@ -103,7 +114,14 @@ gulp.task('htmlwatch', function() {
  */
 gulp.task('clientjswatch', function() {
 
-    gulp.watch('src/client/**/*.js', ['copy']);
+    gulp.watch('src/client/**/*.js', function(){
+        
+        //
+        run_sequence('copy');
+
+        // 
+        server.start.bind(server)();
+    });
 });
 
 
@@ -114,8 +132,17 @@ gulp.task('clientjswatch', function() {
 gulp.task('scsswatch', function() {
 
     //compile all SCSS when any SCSS files change
-    gulp.watch('src/client/**/*.scss', ['scss']);
+    gulp.watch('src/client/**/*.scss', function(file){
+        
+        //
+        run_sequence('scss');
+
+        // 
+        server.notify.apply(server, [file]);
+
+    });
 });
+
 
 /**
 * @name serverwatch
@@ -124,8 +151,16 @@ gulp.task('scsswatch', function() {
 gulp.task('serverwatch', function() {
 
     //compile all SCSS when any SCSS files change
-    gulp.watch('src/server/**/*.js', ['copy']);
+    gulp.watch('src/server/**/*.js', function(){
+        
+        //
+        run_sequence('copy');
+
+        // 
+        server.start.bind(server)();
+    });
 });
+
 
 /**
  * @name watch
@@ -134,24 +169,33 @@ gulp.task('serverwatch', function() {
 gulp.task('watch', ['htmlwatch', 'clientjswatch', 'scsswatch', 'serverwatch']);
 
 
-
 /**
  * @name serve
- * @desc The app serve task - starts the server for the app
+ * @desc The app serve task - builds the app and starts the server
  */
-gulp.task('serve', function() {
+gulp.task('serve', ['build'], function() {
 
-    // Start our own server
-    server.start();
+    // Update server global with our custom server in development mode
+    server = gls.new("dist/server/app.js", {env: {NODE_ENV: 'development'}});
 
+    // Start server
+    var promise = server.start();
+
+    //optionally handle the server process exiting 
+    promise.then(function(result) {
+        
+        // temporary auto-restart since server file isn't found in dist on first start (hacky)
+        server.start.bind(server)();
+    });
 });
+
 
 /**
  * @name dev
  * @desc The develop task - serve the app and watch for file updates
  */
-gulp.task('dev', function() {
-    run_sequence('build', 'serve', 'watch')
+gulp.task('dev', ['serve'], function() {
+    run_sequence('watch');
 });
 
 
